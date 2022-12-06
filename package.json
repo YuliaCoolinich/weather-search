@@ -16,11 +16,6 @@
     "typescript": "^4.9.3",
     "web-vitals": "^2.1.4"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint && npm run prettier"
-    }
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -28,7 +23,14 @@
     "eject": "react-scripts eject",
     "lint": "npx eslint ./src",
     "format": "npx eslint ./src --fix",
-    "prettier": "npx prettier --write ."
+    "prettier": "npx prettier --write .",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npx prettier --write .",
+      "npx eslint ./src --fix"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -51,7 +53,9 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.45.1",
     "@typescript-eslint/parser": "^5.45.1",
-    "husky": "^8.0.2",
+    "eslint-plugin-react": "^7.31.11",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.1.0",
     "prettier": "^2.8.0"
   }
 }

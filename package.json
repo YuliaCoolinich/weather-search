@@ -16,6 +16,11 @@
     "typescript": "^4.9.3",
     "web-vitals": "^2.1.4"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run prettier"
+    }
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -46,6 +51,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.45.1",
     "@typescript-eslint/parser": "^5.45.1",
+    "husky": "^8.0.2",
     "prettier": "^2.8.0"
   }
 }

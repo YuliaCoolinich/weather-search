@@ -25,7 +25,7 @@ const CardsBoard = (props: ICardsBoard) => {
       {cards.length === 0 ? (
         <Box style={{ display: 'flex', justifyContent: 'center' }}>No cards yet. Add new city to own collection!</Box>
       ) : (
-        <Grid container spacing={1} minHeight="100vh">
+        <Grid container spacing={1} minHeight="70vh">
           {cards.map((card) => (
             <Card card={card} updateCard={updateCard} key={card.id} />
           ))}

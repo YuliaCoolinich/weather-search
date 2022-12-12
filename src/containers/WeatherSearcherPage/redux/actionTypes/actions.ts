@@ -45,3 +45,9 @@ export const deleteCardError = (errorMessage: string): IWeatherSearcherActionTyp
     errorMessage,
   },
 });
+
+///////////////////////////////////////////////////////////////////////////
+export const collapseError = (): IWeatherSearcherActionType => ({
+  type: actionTypes.COLLAPSE_ERROR,
+  payload: {},
+});

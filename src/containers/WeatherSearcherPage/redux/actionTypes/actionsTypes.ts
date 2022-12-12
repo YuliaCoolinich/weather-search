@@ -40,5 +40,10 @@ export interface cardError {
   };
 }
 
-type IWeatherSearcherActionType = addCard | addCardSuccess | deleteCard | deleteCardSuccess | cardError;
+export interface collapseError {
+  type: typeof actionTypes.COLLAPSE_ERROR;
+  payload: Record<string, never>;
+}
+
+type IWeatherSearcherActionType = addCard | addCardSuccess | deleteCard | deleteCardSuccess | cardError | collapseError;
 export default IWeatherSearcherActionType;

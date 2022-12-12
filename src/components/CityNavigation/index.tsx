@@ -7,14 +7,19 @@ import SearchInput from '../SearchInput';
 import ICity from '../../interfaces/ICity';
 import citiesData from '../../data/city.list.json';
 
-const CityNavigation = () => {
+export interface ICityNavigation {
+  addCard: (cityId: number) => Promise<void>;
+}
+
+const CityNavigation = (props: ICityNavigation) => {
   const cities = citiesData as Array<ICity>;
   const [cityId, setCityId] = useState<number>();
-  console.log(cityId);
 
-  const handleCitySubmit = (): void => {
+  const { addCard } = props;
+
+  const handleCitySubmit = async (): Promise<void> => {
     if (cityId) {
-      console.log('Go action');
+      addCard(cityId);
     }
   };
 

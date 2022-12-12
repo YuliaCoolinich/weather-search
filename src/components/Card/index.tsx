@@ -13,21 +13,26 @@ import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
 import ICard from '../../interfaces/ICard';
 import FlagImage from '../FlagImage';
 
+import useAppDispatch from '../../hooks/useAppDispatch';
+import * as actions from '../../containers/WeatherSearcherPage/redux/actionCreators/cards';
+
 export interface ICardProps {
   card: ICard;
-  deleteCard: (id: number) => void;
-  updateCard: (id: number) => void;
+  updateCard: (id: string) => void;
 }
 
 const WeatherCard = (props: ICardProps) => {
-  const { card, deleteCard, updateCard } = props;
+  const { card, updateCard } = props;
 
-  const onDeleteHandler = (): void => {
+  const dispatch = useAppDispatch();
+
+  const onDeleteHandler = async (): Promise<void> => {
     const isLogout: boolean = window.confirm(
-      `Are you sure you want to delete ${card.city.name} card from your collection?`,
+      `Are you sure you want to delete card of ${card.city.name} city from your collection?`,
     );
     if (isLogout) {
-      deleteCard(card.id);
+      console.log(`delete ${card.id}`);
+      await dispatch(actions.deleteCard(card.id));
     }
   };
   const onUpdateHandler = (): void => {

@@ -1,7 +1,7 @@
 import ICity from './ICity';
 
 export default interface ICard {
-  id: number;
+  id: string;
   city: ICity;
   // weather: IWeather; // TODO add weather interface after gets data from api
   // createdAt: Date;

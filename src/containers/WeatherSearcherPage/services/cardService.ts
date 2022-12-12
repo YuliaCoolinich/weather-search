@@ -21,3 +21,7 @@ export const createCard = async (cityId: number): Promise<ICard> => {
     city,
   };
 };
+
+export const isCreatedCard = (cards: ICard[], cityId: number): boolean => {
+  return !!cards.find((card) => card.city.id === cityId);
+};

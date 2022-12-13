@@ -51,3 +51,11 @@ export const collapseError = (): IWeatherSearcherActionType => ({
   type: actionTypes.COLLAPSE_ERROR,
   payload: {},
 });
+
+///////////////////////////////////////////////////////////////////////////
+export const getCityWeather = (cityId: number): IWeatherSearcherActionType => ({
+  type: actionTypes.WEATHER_GET_REQUEST,
+  payload: {
+    cityId,
+  },
+});

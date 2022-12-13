@@ -45,5 +45,21 @@ export interface collapseError {
   payload: Record<string, never>;
 }
 
-type IWeatherSearcherActionType = addCard | addCardSuccess | deleteCard | deleteCardSuccess | cardError | collapseError;
+////////////////////////////////////////////////
+
+export interface getCityWeather {
+  type: typeof actionTypes.WEATHER_GET_REQUEST;
+  payload: {
+    cityId: number;
+  };
+}
+
+type IWeatherSearcherActionType =
+  | addCard
+  | addCardSuccess
+  | deleteCard
+  | deleteCardSuccess
+  | cardError
+  | collapseError
+  | getCityWeather;
 export default IWeatherSearcherActionType;

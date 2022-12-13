@@ -2,6 +2,7 @@ import { Dispatch } from 'redux';
 import IWeatherSearcherActionType from '../actionTypes/actionsTypes';
 import ICard from '../../../../interfaces/ICard';
 import * as cardService from '../../services/cardService';
+import * as weatherService from '../../services/weatherService';
 import * as actions from '../actionTypes/actions';
 
 export const addCard =
@@ -15,6 +16,8 @@ export const addCard =
       dispatch(actions.addCard(cityId));
 
       const card: ICard = await cardService.createCard(cityId);
+      card.weather = await weatherService.getCityWeather(cityId);
+
       dispatch(actions.addCardSuccess(card));
     } catch (e) {
       const error = e as Error;

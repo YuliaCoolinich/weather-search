@@ -4,12 +4,12 @@ import CityNavigation from '../../components/CityNavigation';
 import CardsBoard from '../../components/CardsBoard';
 import Alert, { AlertType } from '../../components/Alert';
 import useAppSelector from '../../hooks/useAppSelector';
-//import initialState from './redux/initialState';
+import initialState from './redux/initialState';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import * as actions from './redux/actionCreators/cards';
 
-const WeatherSearcherPage = () => {
-  const state = useAppSelector((state) => state.weatherSearcherReducer); // TODO add using new js version: ?? initialState
+const WeatherSearcherPage = (): JSX.Element => {
+  const state = useAppSelector((state) => state.weatherSearcherReducer ?? initialState);
   console.log(state);
 
   const dispatch = useAppDispatch();

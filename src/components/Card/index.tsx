@@ -10,8 +10,10 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
 
+import CelsiusSymbol from '../base/symbols/CelsiusSymbol';
 import ICard from '../../interfaces/ICard';
 import FlagImage from '../FlagImage';
+import WeatherImage from '../WeatherImage';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
 import * as actions from '../../containers/WeatherSearcherPage/redux/actionCreators/cards';
@@ -21,7 +23,7 @@ export interface ICardProps {
   updateCard: (id: string) => void;
 }
 
-const WeatherCard = (props: ICardProps) => {
+const WeatherCard = (props: ICardProps): JSX.Element => {
   const { card, updateCard } = props;
 
   const dispatch = useAppDispatch();
@@ -31,36 +33,75 @@ const WeatherCard = (props: ICardProps) => {
       `Are you sure you want to delete card of ${card.city.name} city from your collection?`,
     );
     if (isLogout) {
-      console.log(`delete ${card.id}`);
       await dispatch(actions.deleteCard(card.id));
     }
   };
   const onUpdateHandler = (): void => {
     updateCard(card.id);
   };
+
+  const roundedTemperature = (temperature: number): string => {
+    if (temperature < 0 && Number(temperature.toFixed(0)) === 0) return '0';
+    return temperature.toFixed(0);
+  };
+
+  const WeatherInfoCell = (cellName: string, cellValue?: number) => {
+    return cellValue === undefined ? null : (
+      <Box style={{ display: 'flex', flexDirection: 'row' }}>
+        <Typography component="span" color="text.secondary" style={{ padding: 5 }}>
+          {cellName}
+        </Typography>
+        <Typography component="span" style={{ padding: 5 }}>
+          {roundedTemperature(cellValue)}
+          <CelsiusSymbol />
+        </Typography>
+      </Box>
+    );
+  };
+
   return (
     <Box sx={{ maxWidth: 500, width: 300, margin: '10px', padding: '10px' }}>
       <Card variant="outlined">
         <CardContent style={{ paddingBottom: '5px' }}>
           <Box style={{ display: 'flex', justifyContent: 'right' }}>
-            <Tooltip title="Update weather" describeChild>
-              <IconButton aria-label="update" size="small" onClick={onUpdateHandler}>
-                <UpdateOutlinedIcon />
-              </IconButton>
-            </Tooltip>
             <Tooltip title="Delete card" describeChild>
               <IconButton aria-label="delete" size="small" onClick={onDeleteHandler}>
                 <DeleteIcon />
               </IconButton>
             </Tooltip>
+            <Tooltip title="Update weather" describeChild>
+              <IconButton aria-label="update" size="small" onClick={onUpdateHandler}>
+                <UpdateOutlinedIcon />
+              </IconButton>
+            </Tooltip>
           </Box>
-          <Typography variant="h6" style={{ padding: '5px' }}>
-            <FlagImage countryCode={card.city.country} />
-            {card.city.name}
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {card.city.country}
-          </Typography>
+          <Box style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
+            <FlagImage countryCode={card.city.country} width={35} />
+            <Typography variant="h6" style={{ padding: '2px' }}>
+              {card.city.name}
+            </Typography>
+          </Box>
+          <Box style={{ paddingInlineEnd: 5 }}>
+            <Box
+              style={{ display: 'flex', flexDirection: 'row', alignItems: 'end', textAlign: 'right', width: '100%' }}
+            >
+              <WeatherImage weatherIcon={card.weather?.weather[0].icon} />
+              <Box style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                  {card.weather?.weather[0].description}
+                </Typography>
+                <Typography sx={{ mb: 1.5 }} variant="h4">
+                  <Typography component="span" sx={{ mb: 1.5 }} variant="h4">
+                    {card.weather?.main.temp ? roundedTemperature(card.weather?.main.temp) : null}
+                  </Typography>
+                  <CelsiusSymbol />
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+          {WeatherInfoCell('Feels like', card.weather?.main.feels_like)}
+          {WeatherInfoCell('Temperature min', card.weather?.main.temp_min)}
+          {WeatherInfoCell('Temperature max', card.weather?.main.temp_max)}
           <CardActions style={{ display: 'flex', alignItems: 'normal', justifyContent: 'right' }}>
             <Button size="small">Details</Button>
           </CardActions>

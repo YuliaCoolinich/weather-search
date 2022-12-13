@@ -1,11 +1,13 @@
+interface IShortWeather {
+  id: number; //  Weather condition id
+  main: string; //  Group of weather parameters (Rain, Snow, Extreme etc.)
+  description: string; //  Weather condition within the group.
+  icon: string; //  Weather icon id
+}
+
 export default interface IWeather {
-  weather: {
-    id: number; //  Weather condition id
-    main: string; //  Group of weather parameters (Rain, Snow, Extreme etc.)
-    description: string; //  Weather condition within the group.
-    icon: string; //  Weather icon id
-  };
-  main?: {
+  weather: Array<IShortWeather>;
+  main: {
     temp: number;
     feels_like: number; // Temperature. This temperature parameter accounts for the human perception of weather.
     temp_min: number; // Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.

@@ -18,7 +18,7 @@ interface IAutocompleteOption extends ICity {
   groupName: string;
 }
 
-const SearchInput = (props: ISearchInputProps) => {
+const SearchInput = (props: ISearchInputProps): JSX.Element => {
   const { id, labelText, setCity } = props;
   const options: IAutocompleteOption[] = props.options.map((option) => {
     const groupName = option.country;
@@ -48,8 +48,14 @@ const SearchInput = (props: ISearchInputProps) => {
       autoHighlight
       renderInput={(params) => <TextField {...params} label={labelText} required />}
       renderOption={(props, option) => (
-        <Tooltip title={`${option.coord.lat}; ${option.coord.lon}`} placement="right-start" arrow describeChild>
-          <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props} key={option.id}>
+        <Tooltip
+          title={`${option.coord.lat}; ${option.coord.lon}`}
+          placement="right-start"
+          arrow
+          describeChild
+          key={option.id}
+        >
+          <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
             <FlagImage countryCode={option.country} />
             {option.optionName}
           </Box>

@@ -7,7 +7,7 @@
   "parser": "@typescript-eslint/parser",
   "extends": ["plugin:@typescript-eslint/recommended", "eslint:recommended", "plugin:react/recommended"],
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 2020,
     "sourceType": "module"
   },
   "plugins": ["react"],
@@ -17,6 +17,7 @@
       {
         "args": "none"
       }
-    ]
+    ],
+    "no-undef": 0
   }
 }

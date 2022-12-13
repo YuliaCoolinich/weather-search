@@ -9,7 +9,7 @@ export interface ICardsBoard {
   cards: ICard[];
 }
 
-const CardsBoard = (props: ICardsBoard) => {
+const CardsBoard = (props: ICardsBoard): JSX.Element => {
   const { cards } = props;
 
   const updateCard = (idCard: string): void => {

@@ -19,7 +19,7 @@ const weatherSearcherReducer = (
       return {
         ...state,
         errorMessage: null,
-        cards: state.cards && state.cards.filter((card) => card.id !== action.payload.cardId), // TODO change used new JS version
+        cards: state.cards?.filter((card) => card.id !== action.payload.cardId),
       };
     case actionTypes.CARD_ADD_ERROR:
     case actionTypes.CARD_DELETE_ERROR:

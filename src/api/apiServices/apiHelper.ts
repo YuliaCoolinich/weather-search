@@ -5,7 +5,7 @@ export const callApi = async (args: IRequestArgument): Promise<Response> => {
 
   if (!result.ok) {
     const resultJSON = await result.json();
-    throw new Error(resultJSON.error.message); // TODO add new syntax ?.
+    throw new Error(resultJSON.error?.message);
   }
 
   return result;

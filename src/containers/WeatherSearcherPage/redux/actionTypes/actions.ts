@@ -10,10 +10,11 @@ export const addCard = (cityId: number): IWeatherSearcherActionType => ({
   },
 });
 
-export const addCardSuccess = (card: ICard): IWeatherSearcherActionType => ({
+export const addCardSuccess = (card: ICard, notification: string): IWeatherSearcherActionType => ({
   type: actionTypes.CARD_ADD_SUCCESS,
   payload: {
     card,
+    notification,
   },
 });
 
@@ -33,10 +34,11 @@ export const deleteCard = (cardId: string): IWeatherSearcherActionType => ({
   },
 });
 
-export const deleteCardSuccess = (cardId: string): IWeatherSearcherActionType => ({
+export const deleteCardSuccess = (cardId: string, notification: string): IWeatherSearcherActionType => ({
   type: actionTypes.CARD_DELETE_SUCCESS,
   payload: {
     cardId,
+    notification,
   },
 });
 
@@ -53,6 +55,11 @@ export const collapseError = (): IWeatherSearcherActionType => ({
   payload: {},
 });
 
+export const collapseNotification = (): IWeatherSearcherActionType => ({
+  type: actionTypes.COLLAPSE_NOTIFICATION,
+  payload: {},
+});
+
 ///////////////////////////////////////////////////////////////////////////
 export const getCityWeather = (cityId: number): IWeatherSearcherActionType => ({
   type: actionTypes.WEATHER_GET_REQUEST,
@@ -61,10 +68,15 @@ export const getCityWeather = (cityId: number): IWeatherSearcherActionType => ({
   },
 });
 
-export const getCityWeatherSuccess = (weather: IWeather, cityId: number): IWeatherSearcherActionType => ({
+export const getCityWeatherSuccess = (
+  weather: IWeather,
+  cityId: number,
+  notification: string,
+): IWeatherSearcherActionType => ({
   type: actionTypes.WEATHER_GET_SUCCESS,
   payload: {
     weather,
     cityId,
+    notification,
   },
 });

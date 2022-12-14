@@ -18,7 +18,7 @@ export const addCard =
       const card: ICard = await cardService.createCard(cityId);
       card.weather = await weatherService.getCityWeather(cityId);
 
-      dispatch(actions.addCardSuccess(card));
+      dispatch(actions.addCardSuccess(card, 'A new card was added.'));
     } catch (e) {
       const error = e as Error;
       dispatch(actions.addCardError(error.message));
@@ -30,7 +30,7 @@ export const deleteCard =
   async (dispatch: Dispatch<IWeatherSearcherActionType>): Promise<void> => {
     try {
       dispatch(actions.deleteCard(cardId));
-      dispatch(actions.deleteCardSuccess(cardId));
+      dispatch(actions.deleteCardSuccess(cardId, 'The card was deleted'));
     } catch (e) {
       const error = e as Error;
       dispatch(actions.deleteCardError(error.message));
@@ -41,4 +41,10 @@ export const collapseError =
   () =>
   (dispatch: Dispatch<IWeatherSearcherActionType>): void => {
     dispatch(actions.collapseError());
+  };
+
+export const collapseNotification =
+  () =>
+  (dispatch: Dispatch<IWeatherSearcherActionType>): void => {
+    dispatch(actions.collapseNotification());
   };

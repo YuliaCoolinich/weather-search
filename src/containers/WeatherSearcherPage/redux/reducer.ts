@@ -15,6 +15,7 @@ const weatherSearcherReducer = (
         ...state,
         errorMessage: null,
         cards: [...state.cards, action.payload.card],
+        notificationMessage: action.payload.notification,
       };
     case actionTypes.CARD_DELETE_REQUEST:
       return {
@@ -25,6 +26,7 @@ const weatherSearcherReducer = (
     case actionTypes.WEATHER_GET_SUCCESS:
       return {
         ...state,
+        notificationMessage: action.payload.notification,
         cards: state.cards?.map((card) => {
           if (card.city.id === action.payload.cityId) {
             return { ...card, weather: action.payload.weather, updatedAt: dateService.createTodayUnixDate() };
@@ -42,6 +44,11 @@ const weatherSearcherReducer = (
       return {
         ...state,
         errorMessage: null,
+      };
+    case actionTypes.COLLAPSE_NOTIFICATION:
+      return {
+        ...state,
+        notificationMessage: null,
       };
     default:
       return state;

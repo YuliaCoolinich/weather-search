@@ -13,6 +13,7 @@ export interface addCardSuccess {
   type: typeof actionTypes.CARD_ADD_SUCCESS;
   payload: {
     card: ICard;
+    notification: string;
   };
 }
 
@@ -29,6 +30,7 @@ export interface deleteCardSuccess {
   type: typeof actionTypes.CARD_DELETE_SUCCESS;
   payload: {
     cardId: string;
+    notification: string;
   };
 }
 
@@ -41,8 +43,8 @@ export interface cardError {
   };
 }
 
-export interface collapseError {
-  type: typeof actionTypes.COLLAPSE_ERROR;
+export interface collapseAlert {
+  type: typeof actionTypes.COLLAPSE_ERROR | typeof actionTypes.COLLAPSE_NOTIFICATION;
   payload: Record<string, never>;
 }
 
@@ -60,6 +62,7 @@ export interface getCityWeatherSuccess {
   payload: {
     weather: IWeather;
     cityId: number;
+    notification: string;
   };
 }
 
@@ -69,7 +72,7 @@ type IWeatherSearcherActionType =
   | deleteCard
   | deleteCardSuccess
   | cardError
-  | collapseError
+  | collapseAlert
   | getCityWeather
   | getCityWeatherSuccess;
 export default IWeatherSearcherActionType;

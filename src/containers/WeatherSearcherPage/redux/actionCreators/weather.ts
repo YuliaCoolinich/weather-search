@@ -12,7 +12,7 @@ export const getCityWeather =
       dispatch(actions.getCityWeather(cityId));
 
       const weather: IWeather = await weatherService.getCityWeather(cityId);
-      dispatch(actions.getCityWeatherSuccess(weather, cityId));
+      dispatch(actions.getCityWeatherSuccess(weather, cityId, 'Weather was updated'));
     } catch (e) {
       const error = e as Error;
       dispatch(actions.addCardError(error.message));

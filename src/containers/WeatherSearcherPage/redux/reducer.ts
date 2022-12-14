@@ -34,8 +34,19 @@ const weatherSearcherReducer = (
           return card;
         }),
       };
+    case actionTypes.WEATHER_FORECAST_GET_SUCCESS:
+      return {
+        ...state,
+        cards: state.cards?.map((card) => {
+          if (card.city.id === action.payload.cityId) {
+            return { ...card, forecast: action.payload.forecast };
+          }
+          return card;
+        }),
+      };
     case actionTypes.CARD_ADD_ERROR:
     case actionTypes.CARD_DELETE_ERROR:
+    case actionTypes.WEATHER_FORECAST_GET_ERROR:
       return {
         ...state,
         errorMessage: action.payload.errorMessage,

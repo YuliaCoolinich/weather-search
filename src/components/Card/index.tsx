@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -15,6 +15,8 @@ import InfoCell from '../base/InfoCell';
 import ICard from '../../interfaces/ICard';
 import FlagImage from '../FlagImage';
 import WeatherImage from '../WeatherImage';
+import Modal from '../Modal';
+import CardDetails from '../CardDetails';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
 import * as actionsCard from '../../containers/WeatherSearcherPage/redux/actionCreators/cards';
@@ -29,6 +31,7 @@ export interface ICardProps {
 
 const WeatherCard = (props: ICardProps): JSX.Element => {
   const { card } = props;
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
 
@@ -42,6 +45,13 @@ const WeatherCard = (props: ICardProps): JSX.Element => {
   };
   const onUpdateHandler = async (): Promise<void> => {
     await dispatch(actionWeather.getCityWeather(card.city.id));
+  };
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
+
+  const onDetailsHandler = async (): Promise<void> => {
+    handleOpenModal();
+    await dispatch(actionWeather.getWeatherForecast(card.city.id));
   };
 
   const temperature = card.weather ? weatherService.roundTemperature(card.weather?.main.temp) : undefined;
@@ -97,7 +107,12 @@ const WeatherCard = (props: ICardProps): JSX.Element => {
           <InfoCell cellName="Temperature min" cellValue={tempMin} specialSymbol={<CelsiusSymbol />} />
           <InfoCell cellName="Temperature max" cellValue={tempMax} specialSymbol={<CelsiusSymbol />} />
           <CardActions style={{ display: 'flex', alignItems: 'normal', justifyContent: 'right' }}>
-            <Button size="small">Details</Button>
+            <Button size="small" onClick={onDetailsHandler}>
+              Details
+            </Button>
+            <Modal open={openModal} handleClose={handleCloseModal}>
+              <CardDetails card={card} />
+            </Modal>
           </CardActions>
         </CardContent>
       </Card>

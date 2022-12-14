@@ -66,6 +66,30 @@ export interface getCityWeatherSuccess {
   };
 }
 
+////////////////////////////////////////////////
+
+export interface getWeatherForecast {
+  type: typeof actionTypes.WEATHER_FORECAST_GET_REQUEST;
+  payload: {
+    cityId: number;
+  };
+}
+
+export interface getWeatherForecastSuccess {
+  type: typeof actionTypes.WEATHER_FORECAST_GET_SUCCESS;
+  payload: {
+    cityId: number;
+    forecast: IWeather[];
+  };
+}
+
+export interface getWeatherForecastError {
+  type: typeof actionTypes.WEATHER_FORECAST_GET_ERROR;
+  payload: {
+    errorMessage: string;
+  };
+}
+
 type IWeatherSearcherActionType =
   | addCard
   | addCardSuccess
@@ -74,5 +98,8 @@ type IWeatherSearcherActionType =
   | cardError
   | collapseAlert
   | getCityWeather
-  | getCityWeatherSuccess;
+  | getCityWeatherSuccess
+  | getWeatherForecast
+  | getWeatherForecastSuccess
+  | getWeatherForecastError;
 export default IWeatherSearcherActionType;

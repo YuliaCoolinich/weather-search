@@ -7,6 +7,12 @@ export const getCityWeather = async (cityId: number): Promise<IWeather> => {
   return weather;
 };
 
+export const getCityDayForecast = async (cityId: number): Promise<IWeather[]> => {
+  const countForecastItems = 12;
+  const forecast: IWeather[] = await apiWeatherService.getCityForecast(cityId, countForecastItems);
+  return forecast;
+};
+
 export const roundTemperature = (temperature: number): string => {
   if (temperature < 0 && Number(temperature.toFixed(0)) === 0) return '0';
   return temperature.toFixed(0);

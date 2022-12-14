@@ -18,3 +18,16 @@ export const getCityWeather =
       dispatch(actions.addCardError(error.message));
     }
   };
+
+export const getWeatherForecast =
+  (cityId: number) =>
+  async (dispatch: Dispatch<IWeatherSearcherActionType>): Promise<void> => {
+    try {
+      dispatch(actions.getWeatherForecast(cityId));
+      const forecast: IWeather[] = await weatherService.getCityDayForecast(cityId);
+      dispatch(actions.getWeatherForecastSuccess(forecast, cityId));
+    } catch (e) {
+      const error = e as Error;
+      dispatch(actions.getWeatherForecastError(error.message));
+    }
+  };

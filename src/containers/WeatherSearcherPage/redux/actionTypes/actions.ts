@@ -80,3 +80,27 @@ export const getCityWeatherSuccess = (
     notification,
   },
 });
+
+///////////////////////////////////////////////////////////////////////////
+
+export const getWeatherForecast = (cityId: number): IWeatherSearcherActionType => ({
+  type: actionTypes.WEATHER_FORECAST_GET_REQUEST,
+  payload: {
+    cityId,
+  },
+});
+
+export const getWeatherForecastSuccess = (forecast: IWeather[], cityId: number): IWeatherSearcherActionType => ({
+  type: actionTypes.WEATHER_FORECAST_GET_SUCCESS,
+  payload: {
+    cityId,
+    forecast,
+  },
+});
+
+export const getWeatherForecastError = (errorMessage: string): IWeatherSearcherActionType => ({
+  type: actionTypes.WEATHER_FORECAST_GET_ERROR,
+  payload: {
+    errorMessage,
+  },
+});

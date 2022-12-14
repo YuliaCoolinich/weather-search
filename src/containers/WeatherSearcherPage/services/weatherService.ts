@@ -6,3 +6,8 @@ export const getCityWeather = async (cityId: number): Promise<IWeather> => {
   console.log(weather);
   return weather;
 };
+
+export const roundTemperature = (temperature: number): string => {
+  if (temperature < 0 && Number(temperature.toFixed(0)) === 0) return '0';
+  return temperature.toFixed(0);
+};

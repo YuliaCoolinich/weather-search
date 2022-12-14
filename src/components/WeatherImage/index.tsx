@@ -1,23 +1,31 @@
 import * as React from 'react';
+import Image from '../base/Image';
 
-const URL_WEATHER_ICON_API = 'http://openweathermap.org/img/wn/';
+const weatherWidth = 100;
+const altTextDefault = 'weather icon';
+const qualityParam = '@2x';
 
 export interface IWeatherImage {
   weatherIcon?: string;
+  weatherName?: string;
 }
 
 const WeatherImage = (props: IWeatherImage): JSX.Element => {
-  const { weatherIcon } = props;
+  const { weatherIcon, weatherName } = props;
+  const altText = weatherName ? `${weatherName} ${altTextDefault}` : altTextDefault;
 
   return (
-    <img
-      loading="lazy"
-      width="100"
-      src={`${URL_WEATHER_ICON_API}${weatherIcon?.toLowerCase()}@2x.png`}
-      srcSet={`${URL_WEATHER_ICON_API}${weatherIcon?.toLowerCase()}@2x.png`}
-      alt="weather icon"
-      style={{ padding: '1px' }}
-    />
+    <>
+      {weatherIcon ? (
+        <Image
+          iconCode={weatherIcon}
+          width={weatherWidth}
+          apiUrl={process.env.REACT_APP_WEATHER_ICON_API_URL}
+          altText={altText}
+          qualityParam={qualityParam}
+        />
+      ) : null}
+    </>
   );
 };
 

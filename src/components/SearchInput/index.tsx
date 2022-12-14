@@ -56,7 +56,7 @@ const SearchInput = (props: ISearchInputProps): JSX.Element => {
           key={option.id}
         >
           <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-            <FlagImage countryCode={option.country} />
+            <FlagImage iconCode={option.country} countryName={option.country} />
             {option.optionName}
           </Box>
         </Tooltip>

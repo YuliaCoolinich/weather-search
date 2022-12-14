@@ -1,4 +1,5 @@
 import ICard from '../../../../interfaces/ICard';
+import IWeather from '../../../../interfaces/IWeather';
 import actionTypes from './actionTypesNames';
 
 export type addCard = {
@@ -54,6 +55,14 @@ export interface getCityWeather {
   };
 }
 
+export interface getCityWeatherSuccess {
+  type: typeof actionTypes.WEATHER_GET_SUCCESS;
+  payload: {
+    weather: IWeather;
+    cityId: number;
+  };
+}
+
 type IWeatherSearcherActionType =
   | addCard
   | addCardSuccess
@@ -61,5 +70,6 @@ type IWeatherSearcherActionType =
   | deleteCardSuccess
   | cardError
   | collapseError
-  | getCityWeather;
+  | getCityWeather
+  | getCityWeatherSuccess;
 export default IWeatherSearcherActionType;

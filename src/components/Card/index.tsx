@@ -16,15 +16,17 @@ import FlagImage from '../FlagImage';
 import WeatherImage from '../WeatherImage';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
-import * as actions from '../../containers/WeatherSearcherPage/redux/actionCreators/cards';
+import * as actionsCard from '../../containers/WeatherSearcherPage/redux/actionCreators/cards';
+import * as actionWeather from '../../containers/WeatherSearcherPage/redux/actionCreators/weather';
+
+import * as dateService from '../../containers/WeatherSearcherPage/services/dateService';
 
 export interface ICardProps {
   card: ICard;
-  updateCard: (id: string) => void;
 }
 
 const WeatherCard = (props: ICardProps): JSX.Element => {
-  const { card, updateCard } = props;
+  const { card } = props;
 
   const dispatch = useAppDispatch();
 
@@ -33,11 +35,11 @@ const WeatherCard = (props: ICardProps): JSX.Element => {
       `Are you sure you want to delete card of ${card.city.name} city from your collection?`,
     );
     if (isLogout) {
-      await dispatch(actions.deleteCard(card.id));
+      await dispatch(actionsCard.deleteCard(card.id));
     }
   };
-  const onUpdateHandler = (): void => {
-    updateCard(card.id);
+  const onUpdateHandler = async (): Promise<void> => {
+    await dispatch(actionWeather.getCityWeather(card.city.id));
   };
 
   const roundedTemperature = (temperature: number): string => {
@@ -64,12 +66,16 @@ const WeatherCard = (props: ICardProps): JSX.Element => {
       <Card variant="outlined">
         <CardContent style={{ paddingBottom: '5px' }}>
           <Box style={{ display: 'flex', justifyContent: 'right' }}>
-            <Tooltip title="Delete card" describeChild>
+            <Tooltip title="Delete card" describeChild followCursor>
               <IconButton aria-label="delete" size="small" onClick={onDeleteHandler}>
                 <DeleteIcon />
               </IconButton>
             </Tooltip>
-            <Tooltip title="Update weather" describeChild>
+            <Tooltip
+              title={`Update weather. Last updated ${dateService.getTimeFrom(card.updatedAt)}`}
+              describeChild
+              followCursor
+            >
               <IconButton aria-label="update" size="small" onClick={onUpdateHandler}>
                 <UpdateOutlinedIcon />
               </IconButton>

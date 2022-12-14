@@ -1,6 +1,7 @@
 import actionTypes from './actionTypesNames';
 import IWeatherSearcherActionType from './actionsTypes';
 import ICard from '../../../../interfaces/ICard';
+import IWeather from '../../../../interfaces/IWeather';
 
 export const addCard = (cityId: number): IWeatherSearcherActionType => ({
   type: actionTypes.CARD_ADD_REQUEST,
@@ -56,6 +57,14 @@ export const collapseError = (): IWeatherSearcherActionType => ({
 export const getCityWeather = (cityId: number): IWeatherSearcherActionType => ({
   type: actionTypes.WEATHER_GET_REQUEST,
   payload: {
+    cityId,
+  },
+});
+
+export const getCityWeatherSuccess = (weather: IWeather, cityId: number): IWeatherSearcherActionType => ({
+  type: actionTypes.WEATHER_GET_SUCCESS,
+  payload: {
+    weather,
     cityId,
   },
 });

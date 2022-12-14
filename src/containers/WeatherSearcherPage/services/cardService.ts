@@ -2,6 +2,7 @@ import ICity from '../../../interfaces/ICity';
 import ICard from '../../../interfaces/ICard';
 import citiesData from '../../../data/city.list.json';
 import * as idService from './idService';
+import * as dateService from './dateService';
 
 export const getCity = async (cityId: number): Promise<ICity> => {
   const cities = citiesData as Array<ICity>;
@@ -15,10 +16,13 @@ export const getCity = async (cityId: number): Promise<ICity> => {
 export const createCard = async (cityId: number): Promise<ICard> => {
   const id = idService.createId();
   const city: ICity = await getCity(cityId);
+  const now: number = dateService.createTodayUnixDate();
 
   return {
     id,
     city,
+    createdAt: now,
+    updatedAt: now,
   };
 };
 

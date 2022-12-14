@@ -1,23 +1,30 @@
 import * as React from 'react';
+import Image from '../base/Image';
 
-const URL_FLAG_API = 'https://flagcdn.com/w20/';
+const widthDefault = 20;
+const altTextDefault = 'flag icon';
 
 export interface IFlagImage {
-  countryCode: string;
+  iconCode: string;
+  width?: number;
+  countryName?: string;
 }
 
-const FlagImage = (props: IFlagImage) => {
-  const { countryCode } = props;
+const FlagImage = (props: IFlagImage): JSX.Element => {
+  const { iconCode, width, countryName } = props;
+  const altText = countryName ? `${countryName} ${altTextDefault}` : altTextDefault;
 
   return (
-    <img
-      loading="lazy"
-      width="20"
-      src={`${URL_FLAG_API}${countryCode.toLowerCase()}.png`}
-      srcSet={`${URL_FLAG_API}${countryCode.toLowerCase()}.png 2x`}
-      alt=""
-      style={{ padding: '5px' }}
-    />
+    <>
+      {iconCode ? (
+        <Image
+          iconCode={iconCode}
+          width={width ?? widthDefault}
+          apiUrl={process.env.REACT_APP_FLAG_API_URL}
+          altText={altText}
+        />
+      ) : null}
+    </>
   );
 };
 

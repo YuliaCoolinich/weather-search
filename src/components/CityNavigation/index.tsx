@@ -11,7 +11,7 @@ export interface ICityNavigation {
   addCard: (cityId: number) => Promise<void>;
 }
 
-const CityNavigation = (props: ICityNavigation) => {
+const CityNavigation = (props: ICityNavigation): JSX.Element => {
   const cities = citiesData as Array<ICity>;
   const [cityId, setCityId] = useState<number>();
 

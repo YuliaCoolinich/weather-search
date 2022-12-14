@@ -1,4 +1,5 @@
 import ICard from '../../../../interfaces/ICard';
+import IWeather from '../../../../interfaces/IWeather';
 import actionTypes from './actionTypesNames';
 
 export type addCard = {
@@ -12,6 +13,7 @@ export interface addCardSuccess {
   type: typeof actionTypes.CARD_ADD_SUCCESS;
   payload: {
     card: ICard;
+    notification: string;
   };
 }
 
@@ -28,6 +30,7 @@ export interface deleteCardSuccess {
   type: typeof actionTypes.CARD_DELETE_SUCCESS;
   payload: {
     cardId: string;
+    notification: string;
   };
 }
 
@@ -40,10 +43,63 @@ export interface cardError {
   };
 }
 
-export interface collapseError {
-  type: typeof actionTypes.COLLAPSE_ERROR;
+export interface collapseAlert {
+  type: typeof actionTypes.COLLAPSE_ERROR | typeof actionTypes.COLLAPSE_NOTIFICATION;
   payload: Record<string, never>;
 }
 
-type IWeatherSearcherActionType = addCard | addCardSuccess | deleteCard | deleteCardSuccess | cardError | collapseError;
+////////////////////////////////////////////////
+
+export interface getCityWeather {
+  type: typeof actionTypes.WEATHER_GET_REQUEST;
+  payload: {
+    cityId: number;
+  };
+}
+
+export interface getCityWeatherSuccess {
+  type: typeof actionTypes.WEATHER_GET_SUCCESS;
+  payload: {
+    weather: IWeather;
+    cityId: number;
+    notification: string;
+  };
+}
+
+////////////////////////////////////////////////
+
+export interface getWeatherForecast {
+  type: typeof actionTypes.WEATHER_FORECAST_GET_REQUEST;
+  payload: {
+    cityId: number;
+  };
+}
+
+export interface getWeatherForecastSuccess {
+  type: typeof actionTypes.WEATHER_FORECAST_GET_SUCCESS;
+  payload: {
+    cityId: number;
+    forecast: IWeather[];
+  };
+}
+
+export interface getWeatherForecastError {
+  type: typeof actionTypes.WEATHER_FORECAST_GET_ERROR;
+  payload: {
+    errorMessage: string;
+  };
+}
+
+type IWeatherSearcherActionType =
+  | addCard
+  | addCardSuccess
+  | deleteCard
+  | deleteCardSuccess
+  | cardError
+  | collapseAlert
+  | getCityWeather
+  | getCityWeatherSuccess
+  | getWeatherForecast
+  | getWeatherForecastSuccess
+  | getWeatherForecastError;
 export default IWeatherSearcherActionType;

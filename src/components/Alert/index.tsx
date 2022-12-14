@@ -19,7 +19,7 @@ export interface IAlert {
   onCollapse: () => void;
 }
 
-const Alert = (props: IAlert) => {
+const Alert = (props: IAlert): JSX.Element => {
   const { type, message, isShown, onCollapse } = props;
 
   const handleCollapse = () => {

@@ -2,14 +2,14 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import CityNavigation from '../../components/CityNavigation';
 import CardsBoard from '../../components/CardsBoard';
-import Alert, { AlertType } from '../../components/Alert';
 import useAppSelector from '../../hooks/useAppSelector';
-//import initialState from './redux/initialState';
+import initialState from './redux/initialState';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import * as actions from './redux/actionCreators/cards';
+import Alert, { AlertType } from '../../components/Alert';
 
-const WeatherSearcherPage = () => {
-  const state = useAppSelector((state) => state.weatherSearcherReducer); // TODO add using new js version: ?? initialState
+const WeatherSearcherPage = (): JSX.Element => {
+  const state = useAppSelector((state) => state.weatherSearcherReducer ?? initialState);
   console.log(state);
 
   const dispatch = useAppDispatch();
@@ -20,13 +20,14 @@ const WeatherSearcherPage = () => {
   const handleCollapseError = () => {
     dispatch(actions.collapseError());
   };
+  const handleCollapseNotification = () => {
+    dispatch(actions.collapseNotification());
+  };
 
   return (
     <>
       <CityNavigation addCard={addCard} />
-
       <CardsBoard cards={state.cards} />
-
       <Box
         sx={{
           marginBlockEnd: 1,
@@ -39,8 +40,14 @@ const WeatherSearcherPage = () => {
           type={AlertType.Error}
           message={state.errorMessage}
         />
+        <Alert
+          isShown={!!state.notificationMessage}
+          onCollapse={handleCollapseNotification}
+          type={AlertType.Success}
+          message={state.notificationMessage}
+        />
       </Box>
-    </> // TODO show message about added card
+    </>
   );
 };
 

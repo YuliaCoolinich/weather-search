@@ -13,6 +13,8 @@
 
 # user setings
 .vscode
+.env
+kendo-ui-license.txt
 
 # misc
 .DS_Store

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import FlagImage from '../FlagImage/index';
 
 import InfoCell from '../base/InfoCell';
 import CelsiusSymbol from '../base/symbols/CelsiusSymbol';
@@ -32,6 +33,12 @@ const CardDetails = (props: ICardDetails) => {
 
   return (
     <Box>
+      <Box style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
+        <FlagImage iconCode={card.city.country} countryName={card.city.country} width={40} />
+        <Typography variant="h6" style={{ padding: '2px' }}>
+          {card.city.name}
+        </Typography>
+      </Box>
       <Typography id="modal-modal-title" component="span" variant="h6">
         Forecast temperature for every next 3 hour
       </Typography>

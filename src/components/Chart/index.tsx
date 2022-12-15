@@ -35,7 +35,7 @@ const ChartContainer = (props: IChartContainer): JSX.Element => {
     <>
       {!data ? null : (
         <Box style={{ height: '300px' }}>
-          <Chart style={{ height: '300px', width: '100%', marginTop: '50px', padding: '30px' }}>
+          <Chart style={{ height: '300px', width: '100%', marginTop: '50px' }}>
             <ChartSeries>
               <ChartSeriesItem
                 type="line"

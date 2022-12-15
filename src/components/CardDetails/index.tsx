@@ -39,42 +39,44 @@ const CardDetails = (props: ICardDetails) => {
           {card.city.name}
         </Typography>
       </Box>
-      <Typography id="modal-modal-title" component="span" variant="h6">
-        Forecast temperature for every next 3 hour
-      </Typography>
-      <Box>
-        <Chart data={chartData} />
+      <Box style={{ overflowY: 'auto', maxHeight: '65vh', marginTop: '15px' }}>
+        <Typography id="modal-modal-title" component="span" variant="h6">
+          Forecast temperature for every next 3 hour
+        </Typography>
+        <Box>
+          <Chart data={chartData} />
+        </Box>
+        <Typography id="modal-modal-title" component="span" variant="h6">
+          Detailed weather data
+        </Typography>
+        <Typography id="modal-modal-description" component="span" sx={{ mt: 2 }}>
+          <InfoCell cellName="Temperature" cellValue={temperature} specialSymbol={<CelsiusSymbol />} />
+          <InfoCell cellName="Feels like" cellValue={tempFeelsLike} specialSymbol={<CelsiusSymbol />} />
+          <InfoCell cellName="Temperature min" cellValue={tempMin} specialSymbol={<CelsiusSymbol />} />
+          <InfoCell cellName="Temperature max" cellValue={tempMax} specialSymbol={<CelsiusSymbol />} />
+          <InfoCell cellName="Atmospheric pressure" cellValue={card.weather?.main.pressure} unit={'hPa'} />
+          <InfoCell
+            cellName="Atmospheric pressure on the sea level"
+            cellValue={card.weather?.main.sea_level}
+            unit={'hPa'}
+          />
+          <InfoCell
+            cellName="Atmospheric pressure on the ground level"
+            cellValue={card.weather?.main.grnd_level}
+            unit={'hPa'}
+          />
+          <InfoCell cellName="Humidity" cellValue={card.weather?.main.humidity} unit={'%'} />
+          <InfoCell cellName="Visibility" cellValue={card.weather?.visibility} unit={'m'} />
+          <InfoCell cellName="Cloudiness" cellValue={card.weather?.clouds?.all} unit={'%'} />
+          <InfoCell cellName="Wind speed" cellValue={card.weather?.wind?.speed} unit={userUnit.windSpeed} />
+          <InfoCell cellName="Wind direction" cellValue={card.weather?.wind?.speed} unit={'degrees'} />
+          <InfoCell cellName="Wind gust" cellValue={card.weather?.wind?.speed} unit={userUnit.windGust} />
+          <InfoCell cellName="Rain volume for the last 1 hour" cellValue={card.weather?.rain?.['1h']} unit={'mm'} />
+          <InfoCell cellName="Rain volume for the last 3 hours" cellValue={card.weather?.rain?.['3h']} unit={'mm'} />
+          <InfoCell cellName="Snow volume for the last 1 hour" cellValue={card.weather?.snow?.['3h']} unit={'mm'} />
+          <InfoCell cellName="Snow volume for the last 3 hours" cellValue={card.weather?.snow?.['3h']} unit={'mm'} />
+        </Typography>
       </Box>
-      <Typography id="modal-modal-title" component="span" variant="h6">
-        Detailed weather data
-      </Typography>
-      <Typography id="modal-modal-description" component="span" sx={{ mt: 2 }}>
-        <InfoCell cellName="Temperature" cellValue={temperature} specialSymbol={<CelsiusSymbol />} />
-        <InfoCell cellName="Feels like" cellValue={tempFeelsLike} specialSymbol={<CelsiusSymbol />} />
-        <InfoCell cellName="Temperature min" cellValue={tempMin} specialSymbol={<CelsiusSymbol />} />
-        <InfoCell cellName="Temperature max" cellValue={tempMax} specialSymbol={<CelsiusSymbol />} />
-        <InfoCell cellName="Atmospheric pressure" cellValue={card.weather?.main.pressure} unit={'hPa'} />
-        <InfoCell
-          cellName="Atmospheric pressure on the sea level"
-          cellValue={card.weather?.main.sea_level}
-          unit={'hPa'}
-        />
-        <InfoCell
-          cellName="Atmospheric pressure on the ground level"
-          cellValue={card.weather?.main.grnd_level}
-          unit={'hPa'}
-        />
-        <InfoCell cellName="Humidity" cellValue={card.weather?.main.humidity} unit={'%'} />
-        <InfoCell cellName="Visibility" cellValue={card.weather?.visibility} unit={'m'} />
-        <InfoCell cellName="Cloudiness" cellValue={card.weather?.clouds?.all} unit={'%'} />
-        <InfoCell cellName="Wind speed" cellValue={card.weather?.wind?.speed} unit={userUnit.windSpeed} />
-        <InfoCell cellName="Wind direction" cellValue={card.weather?.wind?.speed} unit={'degrees'} />
-        <InfoCell cellName="Wind gust" cellValue={card.weather?.wind?.speed} unit={userUnit.windGust} />
-        <InfoCell cellName="Rain volume for the last 1 hour" cellValue={card.weather?.rain?.['1h']} unit={'mm'} />
-        <InfoCell cellName="Rain volume for the last 3 hours" cellValue={card.weather?.rain?.['3h']} unit={'mm'} />
-        <InfoCell cellName="Snow volume for the last 1 hour" cellValue={card.weather?.snow?.['3h']} unit={'mm'} />
-        <InfoCell cellName="Snow volume for the last 3 hours" cellValue={card.weather?.snow?.['3h']} unit={'mm'} />
-      </Typography>
     </Box>
   );
 };

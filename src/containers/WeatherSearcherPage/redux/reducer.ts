@@ -50,6 +50,7 @@ const weatherSearcherReducer = (
       return {
         ...state,
         errorMessage: action.payload.errorMessage,
+        notificationMessage: null,
       };
     case actionTypes.COLLAPSE_ERROR:
       return {

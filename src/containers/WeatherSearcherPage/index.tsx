@@ -15,7 +15,7 @@ const WeatherSearcherPage = (): JSX.Element => {
 
   useEffect(() => {
     if (state.cards.length !== 0) {
-      // should update weather for each of card in first render
+      // The weather should be updated for each card at the first render
       state.cards.forEach(async (card) => {
         await dispatch(actionsWeather.getCityWeather(card.city.id));
       });
@@ -42,6 +42,9 @@ const WeatherSearcherPage = (): JSX.Element => {
         sx={{
           marginBlockEnd: 1,
           padding: 1,
+          position: 'absolute',
+          right: '10px',
+          bottom: '10px',
         }}
       >
         <Alert

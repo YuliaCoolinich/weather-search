@@ -19,6 +19,8 @@ const style = {
   height: '75%',
 };
 
+const BUTTON_CLOSE_TITLE = 'Close';
+
 export interface IModal {
   open: boolean;
   handleClose: () => void;
@@ -37,7 +39,7 @@ const Modal = (props: IModal): JSX.Element => {
     >
       <Box sx={style}>
         <Box style={{ display: 'flex', justifyContent: 'right' }}>
-          <Tooltip title="Close" describeChild followCursor>
+          <Tooltip title={BUTTON_CLOSE_TITLE} describeChild followCursor>
             <IconButton aria-label="delete" size="small" onClick={handleClose}>
               <CloseIcon />
             </IconButton>

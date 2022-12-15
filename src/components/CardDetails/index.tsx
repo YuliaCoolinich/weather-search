@@ -18,6 +18,9 @@ export interface ICardDetails {
   card: ICard;
 }
 
+const FORECAST_BOX_TITLE = 'Forecast temperature for every next 3 hour';
+const DETAILED_BOX_TITLE = 'Detailed weather data';
+
 const CardDetails = (props: ICardDetails): JSX.Element => {
   const { card } = props;
 
@@ -41,13 +44,13 @@ const CardDetails = (props: ICardDetails): JSX.Element => {
       </Box>
       <Box style={{ overflowY: 'auto', maxHeight: '65vh', marginTop: '15px' }}>
         <Typography id="modal-modal-title" component="span" variant="h6">
-          Forecast temperature for every next 3 hour
+          {FORECAST_BOX_TITLE}
         </Typography>
         <Box>
           <Chart data={chartData} />
         </Box>
         <Typography id="modal-modal-title" component="span" variant="h6">
-          Detailed weather data
+          {DETAILED_BOX_TITLE}
         </Typography>
         <Typography id="modal-modal-description" component="span" sx={{ mt: 2 }}>
           <InfoCell cellName="Temperature" cellValue={temperature} specialSymbol={<CelsiusSymbol />} />

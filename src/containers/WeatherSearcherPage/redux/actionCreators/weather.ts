@@ -4,6 +4,8 @@ import IWeather from '../../../../interfaces/IWeather';
 import * as weatherService from '../../services/weatherService';
 import * as actions from '../actionTypes/actions';
 
+const WEATHER_UPDATED_SUCCESS_NOTIFICATION = 'Weather was updated';
+
 export const getCityWeather =
   (cityId: number) =>
   async (dispatch: Dispatch<IWeatherSearcherActionType>): Promise<void> => {
@@ -12,7 +14,7 @@ export const getCityWeather =
       dispatch(actions.getCityWeather(cityId));
 
       const weather: IWeather = await weatherService.getCityWeather(cityId);
-      dispatch(actions.getCityWeatherSuccess(weather, cityId, 'Weather was updated'));
+      dispatch(actions.getCityWeatherSuccess(weather, cityId, WEATHER_UPDATED_SUCCESS_NOTIFICATION));
     } catch (e) {
       const error = e as Error;
       dispatch(actions.addCardError(error.message));

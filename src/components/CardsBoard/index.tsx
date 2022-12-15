@@ -19,7 +19,7 @@ const CardsBoard = (props: ICardsBoard): JSX.Element => {
     <Box sx={{ padding: 4 }} style={{ display: 'flex', minHeight: 'min-content' }}>
       {cards.length === 0 ? (
         <Box style={{ width: '100%' }} minHeight="80vh">
-          <Typography component="span" style={{ textAlign: 'center' }}>
+          <Typography component="div" style={{ textAlign: 'center' }}>
             {EMPTY_BOARD_NOTIFICATION}
           </Typography>
         </Box>

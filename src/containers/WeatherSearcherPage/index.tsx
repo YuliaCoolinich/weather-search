@@ -1,27 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import CityNavigation from '../../components/CityNavigation';
 import CardsBoard from '../../components/CardsBoard';
 import useAppSelector from '../../hooks/useAppSelector';
 import initialState from './redux/initialState';
 import useAppDispatch from '../../hooks/useAppDispatch';
-import * as actions from './redux/actionCreators/cards';
+import * as actionsCard from './redux/actionCreators/cards';
+import * as actionsWeather from './redux/actionCreators/weather';
 import Alert, { AlertType } from '../../components/Alert';
 
 const WeatherSearcherPage = (): JSX.Element => {
   const state = useAppSelector((state) => state.weatherSearcherReducer ?? initialState);
   console.log(state);
 
+  useEffect(() => {
+    if (state.cards.length !== 0) {
+      // should update weather for each of card in first render
+      state.cards.forEach(async (card) => {
+        await dispatch(actionsWeather.getCityWeather(card.city.id));
+      });
+    }
+  }, []);
+
   const dispatch = useAppDispatch();
 
   const addCard = async (cityId: number): Promise<void> => {
-    await dispatch(actions.addCard(state.cards, cityId));
+    await dispatch(actionsCard.addCard(state.cards, cityId));
   };
   const handleCollapseError = () => {
-    dispatch(actions.collapseError());
+    dispatch(actionsCard.collapseError());
   };
   const handleCollapseNotification = () => {
-    dispatch(actions.collapseNotification());
+    dispatch(actionsCard.collapseNotification());
   };
 
   return (

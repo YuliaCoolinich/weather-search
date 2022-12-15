@@ -3,6 +3,7 @@ import ICard from '../../../interfaces/ICard';
 import citiesData from '../../../data/city.list.json';
 import * as idService from './idService';
 import * as dateService from './dateService';
+import * as storageService from './storageService';
 
 export const getCity = async (cityId: number): Promise<ICity> => {
   const cities = citiesData as Array<ICity>;
@@ -28,4 +29,11 @@ export const createCard = async (cityId: number): Promise<ICard> => {
 
 export const isCreatedCard = (cards: ICard[], cityId: number): boolean => {
   return !!cards.find((card) => card.city.id === cityId);
+};
+
+export const getSavedCards = (): ICard[] => {
+  if (storageService.isEmptyStorage()) {
+    return [];
+  }
+  return storageService.extractSavedAllCards();
 };

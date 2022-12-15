@@ -4,6 +4,7 @@ import ICard from '../../../../interfaces/ICard';
 import * as cardService from '../../services/cardService';
 import * as weatherService from '../../services/weatherService';
 import * as actions from '../actionTypes/actions';
+import * as storageService from '../../services/storageService';
 
 export const addCard =
   (cards: ICard[], cityId: number) =>
@@ -18,6 +19,7 @@ export const addCard =
       const card: ICard = await cardService.createCard(cityId);
       card.weather = await weatherService.getCityWeather(cityId);
 
+      storageService.save(card);
       dispatch(actions.addCardSuccess(card, 'A new card was added.'));
     } catch (e) {
       const error = e as Error;
@@ -30,6 +32,7 @@ export const deleteCard =
   async (dispatch: Dispatch<IWeatherSearcherActionType>): Promise<void> => {
     try {
       dispatch(actions.deleteCard(cardId));
+      storageService.remove(cardId);
       dispatch(actions.deleteCardSuccess(cardId, 'The card was deleted'));
     } catch (e) {
       const error = e as Error;

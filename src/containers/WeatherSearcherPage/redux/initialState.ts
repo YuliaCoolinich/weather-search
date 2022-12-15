@@ -1,4 +1,5 @@
 import ICard from '../../../interfaces/ICard';
+import * as cardService from '../services/cardService';
 
 export type IWeatherSearcherPageState = {
   cards: ICard[];
@@ -7,7 +8,7 @@ export type IWeatherSearcherPageState = {
 };
 
 const initialState: IWeatherSearcherPageState = {
-  cards: [],
+  cards: cardService.getSavedCards(),
   errorMessage: null,
   notificationMessage: null,
 };

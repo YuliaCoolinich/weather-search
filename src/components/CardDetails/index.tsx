@@ -18,7 +18,7 @@ export interface ICardDetails {
   card: ICard;
 }
 
-const CardDetails = (props: ICardDetails) => {
+const CardDetails = (props: ICardDetails): JSX.Element => {
   const { card } = props;
 
   const temperature = card.weather ? weatherService.roundTemperature(card.weather?.main.temp) : undefined;

@@ -17,10 +17,11 @@ const weatherSearcherReducer = (
         cards: [...state.cards, action.payload.card],
         notificationMessage: action.payload.notification,
       };
-    case actionTypes.CARD_DELETE_REQUEST:
+    case actionTypes.CARD_DELETE_SUCCESS:
       return {
         ...state,
         errorMessage: null,
+        notificationMessage: action.payload.notification,
         cards: state.cards?.filter((card) => card.id !== action.payload.cardId),
       };
     case actionTypes.WEATHER_GET_SUCCESS:

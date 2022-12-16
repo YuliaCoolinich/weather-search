@@ -18,7 +18,7 @@ export interface ICardDetails {
   card: ICard;
 }
 
-const FORECAST_BOX_TITLE = 'Tomorrow forecast temperature for every next 3 hours';
+const FORECAST_BOX_TITLE = 'Tomorrow temperature forecast';
 const DETAILED_BOX_TITLE = 'Detailed weather data';
 
 const CardDetails = (props: ICardDetails): JSX.Element => {

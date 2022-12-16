@@ -8,7 +8,6 @@ export enum RequestMethods {
 }
 
 export const getRequest = async (args: IRequestArgument): Promise<IWeather | IForecastResponse> => {
-  console.log(args);
   const apiArguments: IRequestArgument = {
     ...args,
     type: RequestMethods.GET,

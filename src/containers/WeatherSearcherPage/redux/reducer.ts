@@ -1,14 +1,12 @@
 import initialState, { IWeatherSearcherPageState } from './initialState';
 import IWeatherSearcherActionTypes from './actionTypes/actionsTypes';
 import actionTypes from './actionTypes/actionTypesNames';
-import * as dateService from '../services/dateService';
+import * as dateService from '../../../services/dateService';
 
 const weatherSearcherReducer = (
   state: IWeatherSearcherPageState = initialState,
   action: IWeatherSearcherActionTypes,
 ): IWeatherSearcherPageState => {
-  console.log(action.type);
-  console.log(action.payload);
   switch (action.type) {
     case actionTypes.CARD_ADD_SUCCESS:
       return {
@@ -17,10 +15,11 @@ const weatherSearcherReducer = (
         cards: [...state.cards, action.payload.card],
         notificationMessage: action.payload.notification,
       };
-    case actionTypes.CARD_DELETE_REQUEST:
+    case actionTypes.CARD_DELETE_SUCCESS:
       return {
         ...state,
         errorMessage: null,
+        notificationMessage: action.payload.notification,
         cards: state.cards?.filter((card) => card.id !== action.payload.cardId),
       };
     case actionTypes.WEATHER_GET_SUCCESS:
@@ -50,6 +49,7 @@ const weatherSearcherReducer = (
       return {
         ...state,
         errorMessage: action.payload.errorMessage,
+        notificationMessage: null,
       };
     case actionTypes.COLLAPSE_ERROR:
       return {

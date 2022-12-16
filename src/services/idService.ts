@@ -3,4 +3,4 @@ import validate from 'uuid-validate';
 
 export const createId = (): string => uuidv4();
 
-export const isValidId = (id: string) => validate(id, 4);
+export const isValidId = (id: string): boolean => validate(id, 4);

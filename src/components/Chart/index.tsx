@@ -7,7 +7,6 @@ import {
   ChartSeries,
   ChartSeriesItem,
   ChartSeriesLabels,
-  ChartSeriesItemTooltip,
 } from '@progress/kendo-react-charts';
 
 import 'hammerjs';
@@ -31,11 +30,12 @@ const labelContent = (e: any) => `${e.value.toFixed(0)} °C`;
 
 const ChartContainer = (props: IChartContainer): JSX.Element => {
   const { data } = props;
+  const categories = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
   return (
     <>
       {!data ? null : (
-        <Box style={{ height: '300px' }}>
-          <Chart style={{ height: '300px', width: '100%', marginTop: '50px', padding: '30px' }}>
+        <Box style={{ height: 'fit-context', overflow: 'visible' }}>
+          <Chart style={{ height: 'fit-context', width: '100%', overflow: 'visible' }}>
             <ChartSeries>
               <ChartSeriesItem
                 type="line"
@@ -43,15 +43,25 @@ const ChartContainer = (props: IChartContainer): JSX.Element => {
                 color={pointColor}
                 field="temp"
                 categoryField="time"
-                highField="100px"
+                highField="fit-context"
+                autoFit={true}
+                margin={10}
+                style="normal"
+                noteTextField="time"
               >
-                <ChartSeriesLabels color="black" position="above" content={labelContent} />
-                <ChartSeriesItemTooltip color="black" />
+                <ChartSeriesLabels color="black" position="left" content={labelContent} />
               </ChartSeriesItem>
             </ChartSeries>
 
             <ChartCategoryAxis>
-              <ChartCategoryAxisItem title={{ text: 'Time', color: 'black' }} />
+              <ChartCategoryAxisItem
+                title={{ text: 'Time', color: 'LightGray' }}
+                categories={categories}
+                baseUnit="hours"
+                visible={true}
+                labels={{ rotation: 60, color: 'LightGray' }}
+                line={{ color: 'LightGray', visible: true }}
+              />
             </ChartCategoryAxis>
           </Chart>
         </Box>

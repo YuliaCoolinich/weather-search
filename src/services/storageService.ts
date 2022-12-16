@@ -1,6 +1,9 @@
-import ICard from '../../../interfaces/ICard';
-import storage from '../../../data/storage';
+import ICard from '../interfaces/ICard';
+import storage from '../data/storage';
 import * as idService from './idService';
+
+const NOT_FOUND_ERROR_MESSAGE = 'The card not found';
+const IS_EMPTY_ERROR_MESSAGE = 'The storage is empty';
 
 export const save = (card: ICard): void => {
   if (!storage.getItem(card.id)) {
@@ -22,14 +25,14 @@ export const isSaved = (cardId: string): boolean => {
 
 export const remove = (cardId: string): void => {
   if (!isSaved(cardId)) {
-    throw new Error('Card not found');
+    throw new Error(NOT_FOUND_ERROR_MESSAGE);
   }
   storage.removeItem(cardId);
 };
 
 export const extractSavedCard = (cardId: string): ICard => {
   if (!isSaved(cardId)) {
-    throw new Error('Card not found');
+    throw new Error(NOT_FOUND_ERROR_MESSAGE);
   }
   const extractedCardJSON = storage.getItem(cardId) as string;
   return JSON.parse(extractedCardJSON);
@@ -37,7 +40,7 @@ export const extractSavedCard = (cardId: string): ICard => {
 
 export const extractSavedAllCards = (): ICard[] => {
   if (isEmptyStorage()) {
-    throw new Error('Trying extract from empty storage');
+    throw new Error(IS_EMPTY_ERROR_MESSAGE);
   }
 
   const cards: ICard[] = Object.entries(storage).reduce<ICard[]>((accumulator, [storageKey, storageValue]) => {

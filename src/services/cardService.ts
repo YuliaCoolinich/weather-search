@@ -1,15 +1,17 @@
-import ICity from '../../../interfaces/ICity';
-import ICard from '../../../interfaces/ICard';
-import citiesData from '../../../data/city.list.json';
+import ICity from '../interfaces/ICity';
+import ICard from '../interfaces/ICard';
+import citiesData from '../data/city.list.json';
 import * as idService from './idService';
 import * as dateService from './dateService';
 import * as storageService from './storageService';
+
+const NOT_FOUND_ERROR_MESSAGE = 'The city not Found';
 
 export const getCity = async (cityId: number): Promise<ICity> => {
   const cities = citiesData as Array<ICity>;
   const city = cities.find((city) => city.id === cityId);
   if (!city) {
-    throw new Error('Not Found'); //TODO add error Class
+    throw new Error(NOT_FOUND_ERROR_MESSAGE);
   }
   return city;
 };

@@ -11,6 +11,8 @@ export interface ICityNavigation {
   addCard: (cityId: number) => Promise<void>;
 }
 
+const BUTTON_CONTENT = 'GO';
+
 const CityNavigation = (props: ICityNavigation): JSX.Element => {
   const cities = citiesData as Array<ICity>;
   const [cityId, setCityId] = useState<number>();
@@ -32,7 +34,7 @@ const CityNavigation = (props: ICityNavigation): JSX.Element => {
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
         <SearchInput id={'city-input'} options={cities} labelText={'Input city name'} setCity={setCityId} />
         <Button variant="contained" size="large" onClick={handleCitySubmit}>
-          GO
+          {BUTTON_CONTENT}
         </Button>
       </Stack>
     </Box>

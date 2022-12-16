@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
@@ -22,8 +20,8 @@ import useAppDispatch from '../../hooks/useAppDispatch';
 import * as actionsCard from '../../containers/WeatherSearcherPage/redux/actionCreators/cards';
 import * as actionWeather from '../../containers/WeatherSearcherPage/redux/actionCreators/weather';
 
-import * as dateService from '../../containers/WeatherSearcherPage/services/dateService';
-import * as weatherService from '../../containers/WeatherSearcherPage/services/weatherService';
+import * as dateService from '../../services/dateService';
+import * as weatherService from '../../services/weatherService';
 
 export interface ICardProps {
   card: ICard;
@@ -79,41 +77,38 @@ const WeatherCard = (props: ICardProps): JSX.Element => {
               </IconButton>
             </Tooltip>
           </Box>
-          <Box style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
-            <FlagImage iconCode={card.city.country} countryName={card.city.country} width={40} />
-            <Typography variant="h6" style={{ padding: '2px' }}>
-              {card.city.name}
-            </Typography>
-          </Box>
-          <Box style={{ paddingInlineEnd: 5 }}>
-            <Box
-              style={{ display: 'flex', flexDirection: 'row', alignItems: 'end', textAlign: 'right', width: '100%' }}
-            >
-              <WeatherImage weatherIcon={card.weather?.weather[0].icon} weatherName={card.weather?.weather[0].main} />
-              <Box style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                  {card.weather?.weather[0].description}
-                </Typography>
-                <Typography sx={{ mb: 1.5 }} variant="h4">
-                  <Typography component="span" sx={{ mb: 1.5 }} variant="h4">
-                    {temperature}
+          <Box onClick={onDetailsHandler} style={{ cursor: 'pointer' }}>
+            <Box style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
+              <FlagImage iconCode={card.city.country} countryName={card.city.country} width={40} />
+              <Typography variant="h6" style={{ padding: '2px' }}>
+                {card.city.name}
+              </Typography>
+            </Box>
+            <Box style={{ paddingInlineEnd: 5 }}>
+              <Box
+                style={{ display: 'flex', flexDirection: 'row', alignItems: 'end', textAlign: 'right', width: '100%' }}
+              >
+                <WeatherImage weatherIcon={card.weather?.weather[0].icon} weatherName={card.weather?.weather[0].main} />
+                <Box style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    {card.weather?.weather[0].description}
                   </Typography>
-                  <CelsiusSymbol />
-                </Typography>
+                  <Typography sx={{ mb: 1.5 }} variant="h4">
+                    <Typography component="span" sx={{ mb: 1.5 }} variant="h4">
+                      {temperature}
+                    </Typography>
+                    <CelsiusSymbol />
+                  </Typography>
+                </Box>
               </Box>
             </Box>
+            <InfoCell cellName="Feels like" cellValue={tempFeelsLike} specialSymbol={<CelsiusSymbol />} />
+            <InfoCell cellName="Temperature min" cellValue={tempMin} specialSymbol={<CelsiusSymbol />} />
+            <InfoCell cellName="Temperature max" cellValue={tempMax} specialSymbol={<CelsiusSymbol />} />
           </Box>
-          <InfoCell cellName="Feels like" cellValue={tempFeelsLike} specialSymbol={<CelsiusSymbol />} />
-          <InfoCell cellName="Temperature min" cellValue={tempMin} specialSymbol={<CelsiusSymbol />} />
-          <InfoCell cellName="Temperature max" cellValue={tempMax} specialSymbol={<CelsiusSymbol />} />
-          <CardActions style={{ display: 'flex', alignItems: 'normal', justifyContent: 'right' }}>
-            <Button size="small" onClick={onDetailsHandler}>
-              Details
-            </Button>
-            <Modal open={openModal} handleClose={handleCloseModal}>
-              <CardDetails card={card} />
-            </Modal>
-          </CardActions>
+          <Modal open={openModal} handleClose={handleCloseModal}>
+            <CardDetails card={card} />
+          </Modal>
         </CardContent>
       </Card>
     </Box>

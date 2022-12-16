@@ -19,7 +19,6 @@ export const getCityWeather = async (cityId: number, units = 'metric', lang = 'e
       appid: process.env.REACT_APP_WEATHER_APP_ID,
     },
   })) as IWeather;
-  console.log(response);
   return response;
 };
 

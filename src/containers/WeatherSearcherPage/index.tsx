@@ -11,7 +11,6 @@ import Alert, { AlertType } from '../../components/Alert';
 
 const WeatherSearcherPage = (): JSX.Element => {
   const state = useAppSelector((state) => state.weatherSearcherReducer ?? initialState);
-  console.log(state);
 
   useEffect(() => {
     if (state.cards.length !== 0) {

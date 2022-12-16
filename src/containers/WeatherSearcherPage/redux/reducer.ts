@@ -7,8 +7,6 @@ const weatherSearcherReducer = (
   state: IWeatherSearcherPageState = initialState,
   action: IWeatherSearcherActionTypes,
 ): IWeatherSearcherPageState => {
-  console.log(action.type);
-  console.log(action.payload);
   switch (action.type) {
     case actionTypes.CARD_ADD_SUCCESS:
       return {

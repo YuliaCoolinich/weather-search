@@ -55,12 +55,12 @@ const ChartContainer = (props: IChartContainer): JSX.Element => {
 
             <ChartCategoryAxis>
               <ChartCategoryAxisItem
-                title={{ text: 'Time', color: 'grey' }}
+                title={{ text: 'Time', color: 'LightGray' }}
                 categories={categories}
                 baseUnit="hours"
                 visible={true}
-                labels={{ rotation: 60, color: 'grey' }}
-                line={{ color: 'grey', visible: true }}
+                labels={{ rotation: 60, color: 'LightGray' }}
+                line={{ color: 'LightGray', visible: true }}
               />
             </ChartCategoryAxis>
           </Chart>

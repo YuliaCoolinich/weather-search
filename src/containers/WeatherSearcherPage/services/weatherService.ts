@@ -8,7 +8,7 @@ export const getCityWeather = async (cityId: number): Promise<IWeather> => {
 };
 
 export const getCityDayForecast = async (cityId: number): Promise<IWeather[]> => {
-  const countForecastItems = 12;
+  const countForecastItems = 8;
   const forecast: IWeather[] = await apiWeatherService.getCityForecast(cityId, countForecastItems);
   return forecast;
 };

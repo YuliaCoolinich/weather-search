@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import IWeatherSearcherActionType from '../actionTypes/actionsTypes';
 import IWeather from '../../../../interfaces/IWeather';
-import * as weatherService from '../../services/weatherService';
+import * as weatherService from '../../../../services/weatherService';
 import * as actions from '../actionTypes/actions';
 
 const WEATHER_UPDATED_SUCCESS_NOTIFICATION = 'Weather was updated';

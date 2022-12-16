@@ -1,7 +1,7 @@
 import initialState, { IWeatherSearcherPageState } from './initialState';
 import IWeatherSearcherActionTypes from './actionTypes/actionsTypes';
 import actionTypes from './actionTypes/actionTypesNames';
-import * as dateService from '../services/dateService';
+import * as dateService from '../../../services/dateService';
 
 const weatherSearcherReducer = (
   state: IWeatherSearcherPageState = initialState,

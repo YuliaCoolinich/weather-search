@@ -20,8 +20,8 @@ import useAppDispatch from '../../hooks/useAppDispatch';
 import * as actionsCard from '../../containers/WeatherSearcherPage/redux/actionCreators/cards';
 import * as actionWeather from '../../containers/WeatherSearcherPage/redux/actionCreators/weather';
 
-import * as dateService from '../../containers/WeatherSearcherPage/services/dateService';
-import * as weatherService from '../../containers/WeatherSearcherPage/services/weatherService';
+import * as dateService from '../../services/dateService';
+import * as weatherService from '../../services/weatherService';
 
 export interface ICardProps {
   card: ICard;

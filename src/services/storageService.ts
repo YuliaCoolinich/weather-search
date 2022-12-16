@@ -1,5 +1,5 @@
-import ICard from '../../../interfaces/ICard';
-import storage from '../../../data/storage';
+import ICard from '../interfaces/ICard';
+import storage from '../data/storage';
 import * as idService from './idService';
 
 const NOT_FOUND_ERROR_MESSAGE = 'The card not found';

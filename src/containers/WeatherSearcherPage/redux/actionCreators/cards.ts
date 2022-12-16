@@ -1,10 +1,10 @@
 import { Dispatch } from 'redux';
 import IWeatherSearcherActionType from '../actionTypes/actionsTypes';
 import ICard from '../../../../interfaces/ICard';
-import * as cardService from '../../services/cardService';
-import * as weatherService from '../../services/weatherService';
+import * as cardService from '../../../../services/cardService';
+import * as weatherService from '../../../../services/weatherService';
 import * as actions from '../actionTypes/actions';
-import * as storageService from '../../services/storageService';
+import * as storageService from '../../../../services/storageService';
 
 const CARD_CREATED_SUCCESS_NOTIFICATION = ' A new card was added';
 const CARD_CREATED_ERROR_MESSAGE = 'A card with this city has been already created';

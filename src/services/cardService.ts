@@ -1,6 +1,6 @@
-import ICity from '../../../interfaces/ICity';
-import ICard from '../../../interfaces/ICard';
-import citiesData from '../../../data/city.list.json';
+import ICity from '../interfaces/ICity';
+import ICard from '../interfaces/ICard';
+import citiesData from '../data/city.list.json';
 import * as idService from './idService';
 import * as dateService from './dateService';
 import * as storageService from './storageService';

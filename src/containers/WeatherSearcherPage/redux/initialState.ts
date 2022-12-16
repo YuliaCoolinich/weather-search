@@ -1,5 +1,5 @@
 import ICard from '../../../interfaces/ICard';
-import * as cardService from '../services/cardService';
+import * as cardService from '../../../services/cardService';
 
 export type IWeatherSearcherPageState = {
   cards: ICard[];

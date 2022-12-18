@@ -30,7 +30,6 @@ const labelContent = (e: any) => `${e.value.toFixed(0)} °C`;
 
 const ChartContainer = (props: IChartContainer): JSX.Element => {
   const { data } = props;
-  const categories = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
   return (
     <>
       {!data ? null : (
@@ -56,7 +55,6 @@ const ChartContainer = (props: IChartContainer): JSX.Element => {
             <ChartCategoryAxis>
               <ChartCategoryAxisItem
                 title={{ text: 'Time', color: 'LightGray' }}
-                categories={categories}
                 baseUnit="hours"
                 visible={true}
                 labels={{ rotation: 60, color: 'LightGray' }}

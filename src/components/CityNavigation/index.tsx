@@ -26,11 +26,7 @@ const CityNavigation = (props: ICityNavigation): JSX.Element => {
   };
 
   return (
-    <Box
-      sx={{
-        padding: 5,
-      }}
-    >
+    <Box style={{ padding: '20px' }}>
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
         <SearchInput id={'city-input'} options={cities} labelText={'Input city name'} setCity={setCityId} />
         <Button variant="contained" size="large" onClick={handleCitySubmit}>

@@ -1,6 +1,6 @@
 enum Rotes {
-  HOME = '/',
-  WEATHER_PAGE = '/weather',
+  HOME = '/weather-search',
+  WEATHER_PAGE = '/weather-search/weather',
 }
 
 export default Rotes;

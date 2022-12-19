@@ -27,7 +27,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - ESLint
   - Prettier
   - husky
-- Saving data in session storage
+- Saving data in local storage
 - Follow the Git workflow
 - Open APIs:
   - [Weather API](https://openweathermap.org/)

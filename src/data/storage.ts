@@ -1,3 +1,3 @@
-const storage: Storage = sessionStorage; //another possible variant is localStorage
+const storage: Storage = localStorage; //another possible variant is sessionStorage
 
 export default storage;

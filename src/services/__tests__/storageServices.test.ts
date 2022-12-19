@@ -2,30 +2,6 @@ import * as services from '../storageService';
 import ICity from '../../interfaces/ICity';
 import ICard from '../../interfaces/ICard';
 
-const storageMock = (function () {
-  let store: { [key: string]: string } = {};
-
-  return {
-    getItem(key: string): string | null {
-      return store[key] || null;
-    },
-    setItem(key: string, value: object) {
-      store[key] = value.toString();
-    },
-    removeItem(key: string) {
-      delete store[key];
-    },
-    clear() {
-      store = {};
-    },
-    length: Object.keys(store).length,
-  };
-})();
-//global.sessionStorage = storageMock;
-Object.defineProperty(window, 'sessionStorage', {
-  value: storageMock,
-});
-
 const Paris: ICity = {
   coord: { lon: 2.3486, lat: 48.853401 },
   country: 'FR',
@@ -42,7 +18,7 @@ const ParisCard: ICard = {
 };
 
 describe('Storage Services', () => {
-  it('save function should invokes storage setItem and getItem functions and save card', () => {
+  it('save function should invokes storage setItem and getItem functions', () => {
     jest.spyOn(Storage.prototype, 'setItem');
     Storage.prototype.setItem = jest.fn();
 
@@ -52,8 +28,5 @@ describe('Storage Services', () => {
     services.save(ParisCard);
     expect(Storage.prototype.setItem).toBeCalledTimes(1);
     expect(Storage.prototype.getItem).toBeCalledTimes(1);
-
-    //expect(sessionStorage.length).toEqual(1);
-    //expect(sessionStorage.getItem(ParisCard.id)).toEqual(JSON.stringify(ParisCard));
   });
 });

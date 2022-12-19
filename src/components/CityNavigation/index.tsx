@@ -7,10 +7,13 @@ import SearchInput from '../SearchInput';
 import ICity from '../../interfaces/ICity';
 import citiesData from '../../data/city.list.json';
 
+import * as TestIds from '../../data/testingIds';
+
 export interface ICityNavigation {
   addCard: (cityId: number) => Promise<void>;
 }
 
+const INPUT_LABEL = 'Input city name';
 const BUTTON_CONTENT = 'GO';
 
 const CityNavigation = (props: ICityNavigation): JSX.Element => {
@@ -28,8 +31,20 @@ const CityNavigation = (props: ICityNavigation): JSX.Element => {
   return (
     <Box style={{ padding: '20px' }}>
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-        <SearchInput id={'city-input'} options={cities} labelText={'Input city name'} setCity={setCityId} />
-        <Button variant="contained" size="large" onClick={handleCitySubmit}>
+        <SearchInput
+          id={'city-input'}
+          options={cities}
+          labelText={INPUT_LABEL}
+          setCity={setCityId}
+          data-testid={TestIds.SEARCH_INPUT}
+        />
+        <Button
+          id={'submit-button'}
+          variant="contained"
+          size="large"
+          onClick={handleCitySubmit}
+          data-testid={TestIds.BUTTON_SUBMIT}
+        >
           {BUTTON_CONTENT}
         </Button>
       </Stack>

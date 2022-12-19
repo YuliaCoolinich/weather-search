@@ -5,7 +5,7 @@ import * as idService from './idService';
 import * as dateService from './dateService';
 import * as storageService from './storageService';
 
-const NOT_FOUND_ERROR_MESSAGE = 'The city not Found';
+export const NOT_FOUND_ERROR_MESSAGE = 'The city not found';
 
 export const getCity = async (cityId: number): Promise<ICity> => {
   const cities = citiesData as Array<ICity>;

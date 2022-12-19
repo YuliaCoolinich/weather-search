@@ -23,6 +23,8 @@ import * as actionWeather from '../../containers/WeatherSearcherPage/redux/actio
 import * as dateService from '../../services/dateService';
 import * as weatherService from '../../services/weatherService';
 
+import * as TestIds from '../../data/testingIds';
+
 export interface ICardProps {
   card: ICard;
 }
@@ -59,7 +61,7 @@ const WeatherCard = (props: ICardProps): JSX.Element => {
 
   return (
     <Box sx={{ maxWidth: 500, width: 300, margin: '10px', padding: '10px' }}>
-      <Card variant="outlined">
+      <Card variant="outlined" data-testid={TestIds.CARD}>
         <CardContent style={{ paddingBottom: '5px' }}>
           <Box style={{ display: 'flex', justifyContent: 'right' }}>
             <Tooltip title="Delete card" describeChild followCursor>

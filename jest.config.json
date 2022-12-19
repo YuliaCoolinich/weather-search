@@ -1,5 +1,5 @@
 {
-    "bail": 1,
-    "verbose": true,
-    "setupFilesAfterEnv": ["<rootDir>src/setupTests.js"]
+  "bail": 1,
+  "verbose": true,
+  "setupFilesAfterEnv": ["<rootDir>src/setupTests.js"]
 }
